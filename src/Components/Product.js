@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import "./product.css";
+
 
 export function Product(props) {
   const [like, setLike] = useState(props.like);
