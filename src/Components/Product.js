@@ -1,67 +1,81 @@
-import Card from 'react-bootstrap/Card';
-import {React,Component} from "react"
-import { Button } from 'react-bootstrap';
+import React, { Component } from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { useState } from "react";
+import "./product.css";
 
+export function Product(props) {
+  const [like, setLike] = useState(props.like);
 
-export default class Product extends Component{
+  const likeProduct = () => {
+    setLike(like + 1);
+  };
 
-    constructor(props){
-        super(props)
-        this.state=props;
+  return (
+   like >=5 ? (
+   <Card style={{ width: "17rem" }} className="bestProduct m-2">
+      <Card.Img
+        variant="top"
+        src={require("../assets/images/" + props.img)}
+        width="100%"
+        height="200px"
+      />
+      <Card.Body>
+        <Card.Title>{props.name}</Card.Title>
+        <Card.Text>Description : {props.description}</Card.Text>
+        <Card.Text>Price : {props.price} DT</Card.Text>
+        <Card.Text>Like : {like}</Card.Text>
+        <Card.Text>quantity : {props.quantity}</Card.Text>
 
+        <Button
+          variant="primary"
+          style={{ marginRight: "50px" }}
+          onClick={()=>likeProduct()}
+        >
+          Like
+        </Button>
+        <Button
+          variant="info"
+          style={{ marginLeft: "50px" }}
+          onClick={props.onClick}
+          disabled={props.quantity === 0}
+        >
+          Buy
+        </Button>
+      </Card.Body>
+    </Card>
+    ):(
+      <Card style={{ width: "17rem" }} className=" m-2">
+      <Card.Img
+        variant="top"
+        src={require("../assets/images/" + props.img)}
+        width="100%"
+        height="200px"
+      />
+      <Card.Body>
+        <Card.Title>{props.name}</Card.Title>
+        <Card.Text>Description : {props.description}</Card.Text>
+        <Card.Text>Price : {props.price} DT</Card.Text>
+        <Card.Text>Like : {like}</Card.Text>
+        <Card.Text>quantity : {props.quantity}</Card.Text>
 
-    }
-
-    handleBuyClick = (e) => {
-        e.preventDefault();
-        this.setState((oldState) => ({
-            product:{...oldState.product,quantity:oldState.product.quantity -1,updated:oldState.product.updated -1  },
-            showAlert: true,
-            
-        }));
-        setTimeout(() => {
-            this.setState({ showAlert: false });
-        }, 2000);
-    }
-
-    
-
-    LikeProduct=(e)=>{
-        e.preventDefault();
-        this.setState((oldState)=>({
-            product:{...oldState.product,like:oldState.product.like +1,updated:oldState.product.updated +1
-        }}));
-        console.log(this.state.product.like)
-    }
-
-        render(){
-            return( 
-                 <Card style={{ width: "17rem" }} className="m-2">
-                        <Card.Img
-                        variant="top"
-                        src={require("../assets/images/" + this.state.product.img)}
-                        width="100%"
-                        height="200px"
-                        />
-                        <Card.Body>
-                            <Card.Title>{this.state.product.name}</Card.Title>
-                            <Card.Text>
-                                {this.state.product.description}
-                            </Card.Text>
-                            <Card.Text>Price : {this.state.product.price} DT</Card.Text>
-                            <Card.Text>Like : {this.state.product.like}</Card.Text>
-                            <Card.Text>Quantity : {this.state.product.quantity}</Card.Text>
-                            <Button variant="primary" style={{ marginRight:"50px"}} onClick={this.LikeProduct} >Like</Button>
-                            <Button variant="info" style={{ marginLeft:"50px"}} onClick={this.handleBuyClick} disabled={this.state.product.quantity === 0}>
-                                Buy
-                            </Button>
-                                
-                        </Card.Body>
-                            
-                    </Card>
-
-             
-            )
-        }
+        <Button
+          variant="primary"
+          style={{ marginRight: "50px" }}
+          onClick={()=>likeProduct()}
+        >
+          Like
+        </Button>
+        <Button
+          variant="info"
+          style={{ marginLeft: "50px" }}
+          onClick={props.onClick}
+          disabled={props.quantity === 0}
+        >
+          Buy
+        </Button>
+      </Card.Body>
+    </Card>
+    )
+  );
 }
-   
