@@ -1,7 +1,7 @@
-import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 export function Product(props) {
@@ -21,7 +21,8 @@ export function Product(props) {
         height="200px"
       />
       <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
+      <Card.Title><Link to={`/Products/detail/${props.name}`}>{props.name}</Link></Card.Title>
+      
         <Card.Text>Description : {props.description}</Card.Text>
         <Card.Text>Price : {props.price} DT</Card.Text>
         <Card.Text>Like : {like}</Card.Text>
@@ -53,7 +54,7 @@ export function Product(props) {
         height="200px"
       />
       <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
+      <Card.Title><Link to={`/Products/detail/${props.name}`}>{props.name}</Link></Card.Title>
         <Card.Text>Description : {props.description}</Card.Text>
         <Card.Text>Price : {props.price} DT</Card.Text>
         <Card.Text>Like : {like}</Card.Text>

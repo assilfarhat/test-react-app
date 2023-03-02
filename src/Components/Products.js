@@ -1,21 +1,18 @@
-import React from "react"
-import {Product} from "./Product";
-import   listproducts  from "../products.json"
+import React from "react";
+import { Product } from "./Product";
+import listproducts from "../products.json";
 import { Row, Alert } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
-export function Products(){
-    
-  const [quantity, setQuantity] = useState(Product.quantity);
+export function Products() {
+  const [quantity, setQuantity] = useState(listproducts.quantity);
 
-    const [alertShow, setAlert] = useState(false)
-   
-    
+  const [alertShow, setAlert] = useState(false);
+
   const buy = () => {
     setAlert(true);
-    setTimeout(() => 
-    setAlert(false), 1000);
-     setQuantity(quantity - 1);
+    setTimeout(() => setAlert(false), 2000);
+    setQuantity(quantity - 1);
   };
 
   const [msg, setMsg] = useState(false);
@@ -26,7 +23,6 @@ export function Products(){
       setMsg(false);
     }, 4000);
   }, []);
-
 
   return (
     <div>
